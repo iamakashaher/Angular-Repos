@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'changeDetection';
+  timer: any = 0;
+
+  constructor(private cdr: ChangeDetectorRef) {
+    this.cdr.detach();
+  }
+
+  ngOnInit() {
+    setInterval(() => {
+      this.timer += 1;
+      console.log(this.timer);
+    }, 200);
+  }
+
 }
